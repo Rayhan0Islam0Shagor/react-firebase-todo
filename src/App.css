@@ -1,38 +1,275 @@
-.App {
-  text-align: center;
+@import url('https://fonts.googleapis.com/css2?family=Ubuntu:wght@400;500;700&display=swap');
+
+:root {
+  --gradient-color: #808f87 0, #98b0a3 100%;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  font-family: 'Ubuntu', sans-serif;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+body {
+  background: radial-gradient(circle at bottom, var(--gradient-color));
+  height: 100vh;
+  overflow-y: hidden;
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+.todo-app {
   display: flex;
   flex-direction: column;
+  justify-content: flex-start;
+  width: 520px;
+  min-height: 600px;
+  background: #001219;
+  text-align: center;
+  margin: 17px auto;
+  border-radius: 10px;
+  padding-bottom: 32px;
+}
+
+.list-of-item {
+  height: 397px;
+  overflow-y: auto;
+}
+
+.todo-input {
+  padding: 14px 32px 14px 16px;
+  border-radius: 4px 0 0 4px;
+  border: 2px solid #4cc9f0;
+  outline: none;
+  width: 320px;
+  background: transparent;
+  color: #fff;
+}
+
+@media (max-width: 1024px) {
+  .todo-app {
+    width: 520px;
+    min-height: 600px;
+  }
+}
+
+@media (max-width: 768px) {
+  .todo-app {
+    width: 520px;
+    min-height: 600px;
+  }
+}
+
+@media (max-width: 425px) {
+  .todo-app {
+    width: 350px;
+    min-height: 400px;
+    margin: 50px auto;
+  }
+}
+@media (max-width: 425px) {
+  .todo-input {
+    padding: 14px 10px 15px 10px;
+    width: 250px;
+  }
+}
+
+@media (max-width: 375px) {
+  .todo-app {
+    width: 300px;
+    min-height: 400px;
+    margin: 50px auto;
+  }
+}
+
+@media (max-width: 375px) {
+  .todo-input {
+    padding: 14px 10px 15px 10px;
+    width: 200px;
+  }
+}
+
+h1 {
+  margin: 32px 0;
+  color: #f8b34b;
+  font-size: 24px;
+}
+
+.complete {
+  text-decoration: line-through;
+}
+
+.todo-form {
+  margin-bottom: 32px;
+}
+
+.todo-input::placeholder {
+  color: #fdffb6;
+}
+
+.todo-button {
+  padding: 16px;
+  font-weight: bold;
+  border: none;
+  border-radius: 0 4px 4px 0;
+  cursor: pointer;
+  outline: none;
+  background: #4cc9f0;
+  color: #03071e;
+  text-transform: uppercase;
+}
+
+.todo-input.edit {
+  border: 2px solid #149fff;
+}
+
+.todo-button.edit {
+  background: linear-gradient(
+    90deg,
+    rgba(20, 159, 255, 1) 0%,
+    rgba(17, 122, 255, 1) 100%
+  );
+  padding: 16px 22px;
+}
+
+.todo-container {
+  display: flex;
+  flex-direction: row;
+  position: relative;
+}
+
+.todo-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 4px auto;
+  padding: 16px;
+  border-radius: 5px;
+  width: 90%;
+  font-weight: 700;
+  background-color: transparent;
+  cursor: pointer;
+}
+
+.todo-row p {
+  background: linear-gradient(39deg, #ffffff, #e3f6f5, #bae8e8);
+  background-clip: text;
+  -webkit-background-clip: text;
+  color: transparent;
+}
+
+.todo-row p:nth-child(4n + 1) {
+  background: linear-gradient(39deg, #88e0ef, #ff9b6a, #77d970);
+  background-clip: text;
+  -webkit-background-clip: text;
+  color: transparent;
+}
+
+.todo-row p:nth-child(4n + 2) {
+  background: linear-gradient(39deg, #a2cdcd, #cee5d0, #fcd2d1);
+  background-clip: text;
+  -webkit-background-clip: text;
+  color: transparent;
+}
+
+.todo-row p:nth-child(4n + 3) {
+  background: linear-gradient(39deg, #00a19d, #ff95c5, #3db2ff);
+  background-clip: text;
+  -webkit-background-clip: text;
+  color: transparent;
+}
+
+.icons {
+  display: flex;
+  align-items: center;
+  flex-direction: row-reverse;
+  font-size: 24px;
+  cursor: pointer;
+}
+
+.delete-icon {
+  margin-left: 8px;
+  color: #ff2626;
+}
+
+.edit-icon {
+  color: #f6d167;
+}
+
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #4cc9f0;
+  border-radius: 10px;
+}
+
+::-webkit-scrollbar-track {
+  background: #a2cdcd;
+  border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #316b83;
+}
+
+.modal {
+  background: rgb(106, 110, 109);
+  background: linear-gradient(
+    39deg,
+    rgb(120, 124, 122) 7%,
+    rgb(218, 177, 67) 42%,
+    rgba(9, 157, 228, 1) 100%
+  );
+  border-radius: 30px;
+  justify-content: center;
+  height: 500px;
+  width: 500px;
+  display: flex;
   align-items: center;
   justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+  flex-direction: column;
+
+  margin: 40px auto;
+}
+.modal h2 {
+  color: #ff2626;
+  margin: 0 0 15px 0;
+  height: 20px;
+}
+.modal p {
+  font-size: 1.2em;
+  font-weight: 500;
 }
 
-.App-link {
-  color: #61dafb;
+.modal button {
+  padding: 16px;
+  border: none;
+  border-radius: 0 20px 0 20px;
+  cursor: pointer;
+  outline: none;
+  background: linear-gradient(
+    90deg,
+    rgba(93, 12, 255, 1) 0%,
+    rgba(155, 0, 250, 1) 100%
+  );
+  transition: all 0.5s ease-in-out;
+  color: #fff;
+  margin-top: 15px;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
+.modal button:hover {
+  border-radius: 20px 0 20px 0;
+  background: linear-gradient(
+    180deg,
+    rgba(93, 12, 255, 1) 0%,
+    rgba(155, 0, 250, 1) 100%
+  );
+}
+
+@media (max-width: 320px) {
+  .modal {
+    width: fit-content;
+    height: 150px;
   }
 }
